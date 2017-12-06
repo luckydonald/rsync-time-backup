@@ -174,7 +174,7 @@ while :; do
 			;;
 		--rsync-append-flags)
 			shift
-			RSYNC_FLAGS="RSYNC_FLAGS $1"
+			RSYNC_FLAGS="$RSYNC_FLAGS $1"
 			;;
 		--log-dir)
 			shift
