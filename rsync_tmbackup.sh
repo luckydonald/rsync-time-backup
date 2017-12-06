@@ -35,14 +35,16 @@ fn_display_usage() {
 	echo "Usage: $(basename $0) [OPTION]... <[USER@HOST:]SOURCE> <[USER@HOST:]DESTINATION> [exclude-pattern-file]"
 	echo ""
 	echo "Options"
-	echo " -p, --port           SSH port."
-	echo " -h, --help           Display this help message."
-	echo " --rsync-get-flags    Display the default rsync flags that are used for backup."
-	echo " --rsync-set-flags    Set the rsync flags that are going to be used for backup."
-	echo " --log-dir            Set the log file directory. If this flag is set, generated files will"
-	echo "                      not be managed by the script - in particular they will not be"
-	echo "                      automatically deleted."
-	echo "                      Default: $LOG_DIR"
+	echo " -p, --port             SSH port."
+	echo " -h, --help             Display this help message."
+	echo " --rsync-get-flags      Display the default rsync flags that are used for backup."
+	echo " --rsync-set-flags      Set the rsync flags that are going to be used for backup."
+	echo " --rsync-append-flags   Appends additional flags to the default rsync flags"
+	echo "                        being used for backup."
+	echo " --log-dir              Set the log file directory. If this flag is set, generated files will"
+	echo "                        not be managed by the script - in particular they will not be"
+	echo "                        automatically deleted."
+	echo "                        Default: $LOG_DIR"
 	echo ""
 	echo "For more detailed help, please see the README file:"
 	echo ""
@@ -169,6 +171,10 @@ while :; do
 		--rsync-set-flags)
 			shift
 			RSYNC_FLAGS="$1"
+			;;
+		--rsync-append-flags)
+			shift
+			RSYNC_FLAGS="RSYNC_FLAGS $1"
 			;;
 		--log-dir)
 			shift
